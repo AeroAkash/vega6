@@ -1,0 +1,12 @@
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Deny from all
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|assets|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>
+<ifModule mod_headers.c>
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+</IfModule>
